@@ -125,6 +125,8 @@ npx playwright show-report
 - прогоняются все спеки,
 - HTML-отчёт Playwright, трейс-файлы и (опционально) Allure прикладываются как артефакты к запуску.
 
+[![Playwright Tests](https://github.com/MaksiLes/playwright-SAUSEDEMO-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/MaksiLes/playwright-SAUSEDEMO-tests/actions/workflows/tests.yml)
+
 См. вкладку **Actions** → последний workflow → **Artifacts**.
 
 👩‍💻 Автор: **Olesia Ibragimova**  

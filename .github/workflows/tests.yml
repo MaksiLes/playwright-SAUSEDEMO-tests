@@ -1,0 +1,64 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
+        run: npx playwright test
+        env:
+          # если вдруг используешь .env — можно прокинуть переменные тут
+          # BASE_URL: https://www.saucedemo.com
+          # CI: true  # по умолчанию GitHub уже ставит CI=true
+          NODE_OPTIONS: --max_old_space_size=4096
+
+      # Артефакты Playwright (HTML-report + traces + screenshots при падениях)
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          if-no-files-found: ignore
+
+      - name: Upload Playwright traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: test-results/**/*
+          if-no-files-found: ignore
+
+      # (Опционально) Allure: сгенерировать и приложить
+      - name: Generate Allure report
+        if: always()
+        run: |
+          npx allure generate ./allure-results --clean -o ./allure-report || echo "no allure results"
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+          if-no-files-found: ignore

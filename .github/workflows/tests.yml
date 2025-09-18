@@ -49,6 +49,20 @@ jobs:
           name: playwright-traces
           path: test-results/**/*
           if-no-files-found: ignore
+      - name: Run Postman (Newman)
+        run: |
+          npx newman run postman/Reqres.postman_collection.json \
+            -e postman/Reqres.postman_environment.json \
+            --reporters cli,htmlextra \
+            --reporter-htmlextra-export ./postman/newman-report.html
+
+      - name: Upload Newman HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-report
+          path: postman/newman-report.html
+          if-no-files-found: warn
 
       # (Опционально) Allure: сгенерировать и приложить
       - name: Generate Allure report

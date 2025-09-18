@@ -129,6 +129,20 @@ npx playwright show-report
 
 См. вкладку **Actions** → последний workflow → **Artifacts**.
 
+## 🔌 API tests (reqres.in)
+
+В проект добавлены примеры тестирования публичного API [Reqres](https://reqres.in) двумя способами (добавлена Postman-коллекция и автозапуск через Newman):
+
+- **Playwright API** — `tests/api/reqres.spec.ts` (CRUD + 404 negative)  
+  Запуск: `npx playwright test tests/api`
+
+- **Postman (Newman)** — коллекция и окружение в `/postman`  
+  Локально: `npm run api:postman`  
+  
+После запуска генерируется HTML-отчёт: `postman/newman-report.html`
+![Reqres](./assets/Report-Newman.png)
+
+
 👩‍💻 Автор: **Olesia Ibragimova**  
 📅 2025  
 

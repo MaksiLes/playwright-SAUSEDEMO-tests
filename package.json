@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "api:postman": "newman run postman/\"Reqres API Tests.postman_collection.json\" -e postman/\"Reqres Env.postman_environment.json\" --reporters cli,htmlextra --reporter-htmlextra-export ./postman/newman-report.html"
+    "api:postman": "newman run postman/\"Reqres.postman_collection.json\" -e postman/\"Reqres.postman_environment.json\" --reporters cli,htmlextra --reporter-htmlextra-export ./postman/newman-report.html"
   },
   "keywords": [],
   "author": "",

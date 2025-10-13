@@ -1,5 +1,5 @@
-import { test, expect } from '../fixtures/test-fixtures';
-import { user, products, dataVerification } from '../utils/test-data';
+import { test, expect } from '../fixtures/test_fixtures';
+import { user, products, dataVerification } from '../utils/test_data';
 import { InventoryPage } from '../pages/inventoryPage';
 import { CartPage } from '../pages/cartPage';
 import { CheckoutPage } from '../pages/checkoutPage';

@@ -8,3 +8,5 @@ node_modules/
 .idea/
 .vscode/
 git rm -r --cached .idea .vscode
+/allure-results/
+/allure-report/

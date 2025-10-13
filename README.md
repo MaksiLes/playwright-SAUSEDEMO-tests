@@ -1,150 +1,165 @@
 # 🧪 Playwright Automation Project — SauceDemo
 
-Проект автотестов на [SauceDemo](https://www.saucedemo.com/)  
-Реализован как учебный, но оформлен в виде полноценного портфолио.
+Automated testing project for SauceDemo (https://www.saucedemo.com/).  
+Developed as a learning project but structured as a complete portfolio example.
 
 ---
 
-## 🎯 Цели проекта
+## 🎯 Project Goals
 
-- Показать навыки автоматизации тестирования UI с использованием **Playwright + TypeScript**.
-- Использовать **Page Object Model (POM)** для структурированного кода.
-- Научиться писать позитивные и негативные тесты.
-- Реализовать end-to-end сценарий: **Login → Inventory → Cart → Checkout**.
-- Продемонстрировать отчётность через **Allure Report**.
-
----
-
-## 🏗 Стек технологий
-
-- **Playwright** — e2e тестирование
-- **TypeScript** — типизация и читаемость кода
-- **POM (Page Object Model)** — структурирование тестов
-- **Allure Report** — визуализация результатов
-- **Node.js / npm** — окружение и пакетный менеджер
+- Demonstrate UI automation testing skills using **Playwright + TypeScript**.
+- Implement **Page Object Model (POM)** for clean and maintainable code.
+- Practice writing positive and negative test cases.
+- mplement an end-to-end scenario: **Login → Inventory → Cart → Checkout**.
+- Demonstrate reporting through **Allure Report**.
 
 ---
 
-## 📂 Структура проекта
+## 🏗 Tech Stack
+
+- **Playwright** — end-to-end testing
+- **TypeScript** — type safety and readability
+- **POM (Page Object Model)** — test structure organization
+- **Allure Report** — result visualization
+- **Node.js / npm** — environment and package manager
+
+---
+
+## 📂 Project Structure
 
 ```
-├── pages/ # Page Object классы (LoginPage, InventoryPage, CartPage, CheckoutPage)
-├── tests/ # Тесты (позитивные, негативные, e2e сценарии)
-├── fixtures/ # Фикстуры (авторизация и переиспользуемые шаги)
-├── utils/ # Тестовые данные (пользователи, продукты)
-├── assets/ # Скриншоты отчетов (для README)
+├── pages/ # Page Object classes (LoginPage, InventoryPage, CartPage, CheckoutPage)
+├── tests/ # Tests (positive, negative, end-to-end)
+├── fixtures/ # Fixtures (authorization and reusable steps)
+├── utils/ # Test data (users, products)
+├── assets/ # Report screenshots (used in README)
 ├── playwright.config.ts
 └── README.md
 ```
 
 ---
 
-## ✅ Реализованные тесты
+## ✅ Implemented Tests
 
 ### 🔐 LoginPage
 
-- Позитивный логин (`standard_user`)
-- Негативные кейсы:
-  - пустой логин
-  - пустой пароль
-  - неверный пароль
-  - заблокированный пользователь (`locked_out_user`)
+- Positive login (`standard_user`)
+- Negative cases:
+  - empty username
+  - empty password
+  - invalid password
+  - locked user (`locked_out_user`)
 
 ### 📦 InventoryPage
 
-- Проверка наличия товаров
-- Добавление товара в корзину → бейджик обновляется
-- Удаление товара → бейджик исчезает
-- Добавление 2 товаров → удаление 1 → бейджик корректный
-- Проверка сортировки (Price low→high)
-- Переход в Cart
+- Verify products are displayed
+- Add product to cart → badge updates
+- Remove product → badge disappears
+- Add two products → remove one → badge count updates correctly
+- Sort by “Price: low to high”
+- Navigate to Cart
 
 ### 🛒 CartPage
 
-- Проверка, что выбранные товары отображаются
-- Удаление товара из корзины
-- Переход к Checkout
+- Verify selected products are shown
+- Remove product from cart
+- Proceed to Checkout
 
 ### 📝 CheckoutPage
 
-- Заполнение формы (Step One) и успешное завершение заказа (Step Complete)
-- Негативный кейс: ошибка при пустом поле
-- Проверка итоговой суммы и списка товаров
-- 
+- Fill out form (Step One) and successfully complete order (Step Complete)
+- Negative case: error for empty required field
+- Verify total price and product list
 
 ---
 
-## ▶️ Установка и запуск пошагово
+## ▶️ Installation and Run Guide
 
 ```bash
-# 1. Клонировать репозиторий
-git clone https://github.com/<твоя-ссылка>/plw-demoqa-tests.git
+# 1. Clone the repository
+git clone https://github.com/<your-link>/plw-demoqa-tests.git
 cd plw-demoqa-tests
 
-# 2. Установить зависимости
+# 2. Install dependencies
 npm install
 
-# 3. Запустить тесты
+# 3. Run tests
 npx playwright test
 
-## 📜 Доступные npm-скрипты
+## 📜 Available npm scripts
 
-- `npm run test` — запустить все тесты
-- `npm run test:chromium` — запустить только в Chromium
-- `npm run test:headed` — запустить в headed-режиме (видимый браузер)
-- `npm run test:ui` — открыть Playwright UI
-- `npm run codegen` — запустить Playwright Codegen (запись шагов)
+- `npm run test` — run all tests
+- `npm run test:chromium` — run only in Chromium
+- `npm run test:headed` — run tests in headed mode (visible browser)
+- `npm run test:ui` — open Playwright UI mode
+- `npm run codegen` — launch Playwright Codegen (step recording tool)
 ```
 
-## 📊 Отчёты
+## 📊 Reports
 
-Проект настроен на использование **Allure Report**.  
-После запуска тестов дотступен Allure отчет:
+The project is configured to use **Allure Report**.
+The `allure-results` and `allure-report` folders are excluded from the repository (listed in .gitignore).
+After running the tests, an Allure report can be generated.
+If you cloned the project for the first time, follow these steps:
 
 ``` bash
+# 1. Install dependencies
+npm install
+# 2. Install Playwright and browsers
+npx playwright install
+# 3. Run tests
 npx playwright test
+(  If the Allure reporter is not configured in `playwright.config.ts` ( i.e., the line reporter: [['html'], ['allure-playwright']] is missing ), then run the command below: 
+npx playwright test --reporter="line,allure-playwright"
+)
+# 4. Generate the HTML report
 npx allure generate ./allure-results --clean -o ./allure-report
+# 5. Open the report in your browser
 npx allure open ./allure-report
+
 ```
+
 ![Playwright Report](./assets/Report-Allure.png)
 ![Playwright Report](./assets/Report-Allure-part-2.png)
 
+After running tests, the default Playwright HTML report is also available:
 
-После запуска тестов доступен HTML-репорт:
 ```bash
 npx playwright show-report
+
 ```
+
 ![Playwright Report](./assets/Report-HTML.png)
 
 ---
 
 ## ⚙️ CI (GitHub Actions)
 
-При каждом `push`/`PR` тесты запускаются автоматически:
-- ставятся браузеры Playwright и зависимости,
-- прогоняются все спеки,
-- HTML-отчёт Playwright, трейс-файлы и (опционально) Allure прикладываются как артефакты к запуску.
+On each `push` or `pull request`, the tests run automatically:
+
+- Playwright browsers and dependencies are installed.
+- All specs are executed.
+- The Playwright HTML report, trace files, and optionally Allure reports are uploaded as workflow artifacts
 
 [![Playwright Tests](https://github.com/MaksiLes/playwright-SAUSEDEMO-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/MaksiLes/playwright-SAUSEDEMO-tests/actions/workflows/tests.yml)
 
-См. вкладку **Actions** → последний workflow → **Artifacts**.
+See the **Actions** tab → latest workflow → **Artifacts**.
 
 ## 🔌 API tests (reqres.in)
 
-В проект добавлены примеры тестирования публичного API [Reqres](https://reqres.in) двумя способами (добавлена Postman-коллекция и автозапуск через Newman):
+The project includes examples of testing the public API [Reqres](https://reqres.in) in two ways (with Postman collection and automated execution via Newman):
 
 - **Playwright API** — `tests/api/reqres.spec.ts` (CRUD + 404 negative)  
-  Запуск: `npx playwright test tests/api`
+  Run with: `npx playwright test tests/api`
 
-- **Postman (Newman)** — коллекция и окружение в `/postman`  
-  Локально: `npm run api:postman`  
+- **Postman (Newman)** — collection and environment located in `/postman`  
+  Run locally: `npm run api:postman`  
   
-После запуска генерируется HTML-отчёт: `postman/newman-report.html`
+After execution, an HTML report is generated at `postman/newman-report.html`
 ![Reqres](./assets/Report-Newman.png)
 
-
-👩‍💻 Автор: **Olesia Ibragimova**  
+👩‍💻 Author: **Olesia Ibragimova**  
 📅 2025  
 
-Этот проект — часть портфолио по автоматизации тестирования  
-с использованием **Playwright + TypeScript**.
+This project is part of a personal QA Automation Portfolio
+built using **Playwright + TypeScript** .

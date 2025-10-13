@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
 import { AuthPage } from '../pages/authPage';
-import { user } from '../utils/test-data';
+import { user } from '../utils/test_data';
 
 export const test = base.extend<{ authPage: AuthPage }>({
   authPage: async ({ page }, use) => {

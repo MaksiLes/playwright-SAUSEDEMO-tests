@@ -1,7 +1,7 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { InventoryPage } from '../pages/inventoryPage';
 import { CartPage } from '../pages/cartPage';
-import { user, products, dataVerification } from '../utils/test-data';
+import { user, products, dataVerification } from '../utils/test_data';
 
 export class CheckoutPage {
   readonly page: Page;

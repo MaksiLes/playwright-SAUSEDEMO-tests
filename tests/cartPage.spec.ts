@@ -1,6 +1,6 @@
-import { test, expect } from '../fixtures/test-fixtures';
+import { test, expect } from '../fixtures/test_fixtures';
 import { AuthPage } from '../pages/authPage';
-import { user, products } from '../utils/test-data';
+import { user, products } from '../utils/test_data';
 import { InventoryPage } from '../pages/inventoryPage';
 import { CartPage } from '../pages/cartPage';
 
